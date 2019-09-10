@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @RestController
@@ -22,7 +23,8 @@ public class TestEndPointController {
     }
 
     @GetMapping("/order/{id}")
-    public String getOrder(@PathVariable String id) {
+    public String getOrder(@PathVariable String id, HttpServletRequest request) {
+        System.out.println(request.getClass().getName());
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return "order id : " + id;
     }
