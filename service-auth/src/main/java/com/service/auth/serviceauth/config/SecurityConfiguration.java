@@ -25,6 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user_1").password(finalPassword).authorities("USER").build());
         manager.createUser(User.withUsername("user_2").password(finalPassword).authorities("USER").build());
+        manager.createUser(User.withUsername("sunhao").password(finalPassword).authorities("USER").build());
 
         return manager;
     }
@@ -43,9 +44,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/oauth/**").permitAll()
-                .antMatchers("/test/**").authenticated()
-                .anyRequest().authenticated();
+//        http.authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll()
+//                .antMatchers("/test/**").authenticated()
+//                .anyRequest().authenticated();
+        http.requestMatchers()
+                .antMatchers("/login", "/oauth/**")
+                .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .permitAll()
+                .and().csrf().disable();
     }
 }

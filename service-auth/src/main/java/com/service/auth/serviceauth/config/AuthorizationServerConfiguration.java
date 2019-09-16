@@ -38,6 +38,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("server")
                 .authorities("oauth2")
+                .secret(finalSecret).and().withClient("client_3")
+//                .resourceIds(Utils.RESOURCEIDS.ORDER)
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("server")
+                .authorities("oauth2")
                 .secret(finalSecret);
     }
 

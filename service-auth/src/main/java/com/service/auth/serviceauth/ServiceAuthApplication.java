@@ -6,10 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @SpringBootApplication
-@EnableResourceServer
+@EnableAuthorizationServer
 @EnableEurekaClient
 public class ServiceAuthApplication {
 
